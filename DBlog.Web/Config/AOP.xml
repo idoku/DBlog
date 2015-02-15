@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net" xmlns:aop="http://www.springframework.net/aop">
+  <!--异常通知拦截  程序所有都支持 不设置条件-->
+  <object id="loggingAroundAdvice" type="DBlog.Core.Intercept.LoggingAroundAdvice, DBlog.Core" />
+
+  <object id="aroundAdvisor" type="Spring.Aop.Support.RegularExpressionMethodPointcutAdvisor, Spring.Aop">
+    <property name="advice" ref="loggingAroundAdvice"/>
+    <property name="patterns">
+      <list>
+        <value>.*</value>
+      </list>
+    </property>
+  </object>
+
+  <!--必须让Spring.NET容器管理DefaultAdvisorAutoProxyCreator类-->
+  <object id="ProxyCreator" type="Spring.Aop.Framework.AutoProxy.DefaultAdvisorAutoProxyCreator, Spring.Aop"/>
+
+</objects>

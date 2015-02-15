@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBlog.Web", "DBlog.Web\DBlog.Web.csproj", "{481AC089-256E-4A87-8701-2F46C1F42F26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBlog.Web.Tests", "DBlog.Web.Tests\DBlog.Web.Tests.csproj", "{60C4C93F-66AB-4A3D-9759-3CB142A23497}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{CAD71B18-E9EC-4AF7-A005-7B3D57ABC936}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{40283463-2F2B-44B0-BC74-6858EA019540}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\DBlogWeb-WAWS-dev.json = PublishScripts\Configurations\DBlogWeb-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBlog.Core", "DBlog.Core\DBlog.Core.csproj", "{53A1F4B1-7958-4A3B-9D78-71CD21CAB100}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{481AC089-256E-4A87-8701-2F46C1F42F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{481AC089-256E-4A87-8701-2F46C1F42F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{481AC089-256E-4A87-8701-2F46C1F42F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{481AC089-256E-4A87-8701-2F46C1F42F26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60C4C93F-66AB-4A3D-9759-3CB142A23497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C4C93F-66AB-4A3D-9759-3CB142A23497}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60C4C93F-66AB-4A3D-9759-3CB142A23497}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60C4C93F-66AB-4A3D-9759-3CB142A23497}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53A1F4B1-7958-4A3B-9D78-71CD21CAB100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53A1F4B1-7958-4A3B-9D78-71CD21CAB100}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53A1F4B1-7958-4A3B-9D78-71CD21CAB100}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53A1F4B1-7958-4A3B-9D78-71CD21CAB100}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{40283463-2F2B-44B0-BC74-6858EA019540} = {CAD71B18-E9EC-4AF7-A005-7B3D57ABC936}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,21 @@
+{
+    "environmentSettings": {
+        "webSite": {
+            "name": "DBlogWeb",
+            "location": "China East"
+        },
+        "databases": [
+            {
+                "connectionStringName": "DefaultConnection",
+                "databaseName": "DBlogWeb_db",
+                "serverName": "",
+                "user": "idoku",
+                "password": "",
+                "edition": "",
+                "size": "",
+                "collation": "",
+                "location": "China East"
+            }
+        ]
+    }
+}
