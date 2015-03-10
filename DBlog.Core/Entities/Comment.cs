@@ -22,14 +22,11 @@ namespace DBlog.Core.Entities
 
         [MaxLength(1000)]
         public string Content { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)] 
+       
         public DateTime CommentDate { get; set; }
-
-         [DatabaseGenerated(DatabaseGeneratedOption.Computed)] 
+        
         public bool IsAudit { get; set; }
-
-         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]    
+        
         public bool IsDeleted { get; set; }
 
          public int PostId { get; set; }
@@ -37,7 +34,7 @@ namespace DBlog.Core.Entities
         [ForeignKey("PostId")]
         public Post  Post { get; set; }
 
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         [ForeignKey("ParentId")]
         public Comment Parent { get; set; }

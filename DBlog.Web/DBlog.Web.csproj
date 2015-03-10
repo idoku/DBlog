@@ -59,6 +59,9 @@
       <HintPath>..\BinariesLib\log4net.2.0.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcPager">
+      <HintPath>..\BinariesLib\MvcPager\MvcPager.dll</HintPath>
+    </Reference>
     <Reference Include="Spring.Aop, Version=1.3.2.40943, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\BinariesLib\Spring.NET\Spring.Aop.dll</HintPath>
@@ -183,6 +186,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apis\TagsController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -190,19 +194,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Filters\LoggingFilterAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502150207178_Initial.cs" />
-    <Compile Include="Migrations\201502150207178_Initial.Designer.cs">
-      <DependentUpon>201502150207178_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs">
       <SubType>Code</SubType>
@@ -211,6 +214,8 @@
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PostViewModel.cs" />
+    <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -221,20 +226,54 @@
     <Content Include="Config\Objects.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\blog-home.css" />
+    <Content Include="Content\blog-post.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Htmls\Home\css\blog-home.css" />
+    <Content Include="Htmls\Home\css\bootstrap.css" />
+    <Content Include="Htmls\Home\css\bootstrap.min.css" />
+    <Content Include="Htmls\Home\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Htmls\Home\index.html" />
+    <Content Include="Htmls\Home\js\bootstrap.js" />
+    <Content Include="Htmls\Home\js\bootstrap.min.js" />
+    <Content Include="Htmls\Home\js\jquery.js" />
+    <Content Include="Htmls\Post\css\blog-post.css" />
+    <Content Include="Htmls\Post\css\bootstrap.css" />
+    <Content Include="Htmls\Post\css\bootstrap.min.css" />
+    <Content Include="Htmls\Post\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Htmls\Post\index.html" />
+    <Content Include="Htmls\Post\js\bootstrap.js" />
+    <Content Include="Htmls\Post\js\bootstrap.min.js" />
+    <Content Include="Htmls\Post\js\jquery.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Config\log4net.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Htmls\Home\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Htmls\Home\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Htmls\Home\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Htmls\Home\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Htmls\Home\LICENSE" />
+    <Content Include="Htmls\Home\README.md" />
+    <Content Include="Htmls\Post\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Htmls\Post\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Htmls\Post\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Htmls\Post\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Htmls\Post\LICENSE" />
+    <Content Include="Htmls\Post\README.md" />
     <None Include="Properties\PublishProfiles\DBlogWeb.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\home.js" />
+    <Content Include="Scripts\jqcloud\jqcloud-1.0.4.js" />
+    <Content Include="Scripts\jqcloud\jqcloud-1.0.4.min.js" />
+    <Content Include="Scripts\jqcloud\jqcloud.css" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -246,6 +285,10 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Home\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -258,10 +301,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -297,10 +338,20 @@
     <Content Include="Views\RolesAdmin\Delete.cshtml" />
     <Content Include="Views\RolesAdmin\Create.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
+    <Content Include="Views\Home\_PagingControl.cshtml" />
+    <Content Include="Views\Home\Tags.cshtml" />
+    <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Home\Post.cshtml" />
+    <Content Include="Views\Home\_CommentsFormControl.cshtml" />
+    <Content Include="Views\Home\_CommentsControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Htmls\Admin\" />
     <Folder Include="Logs\" />
+    <Folder Include="Views\Category\" />
+    <Folder Include="Views\Default\" />
+    <Folder Include="Views\Tags\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -316,11 +367,6 @@
       <Project>{53a1f4b1-7958-4a3b-9d78-71cd21cab100}</Project>
       <Name>DBlog.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201502150207178_Initial.resx">
-      <DependentUpon>201502150207178_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

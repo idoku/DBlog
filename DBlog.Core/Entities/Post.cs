@@ -50,5 +50,7 @@ namespace DBlog.Core.Entities
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<Category> Categories { get; set; }
+
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

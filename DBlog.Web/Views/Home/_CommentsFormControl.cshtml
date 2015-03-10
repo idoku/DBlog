@@ -1,0 +1,19 @@
+﻿@model DBlog.Core.Entities.Comment
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Author)
+    @Html.TextBoxFor(m => m.Author, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Content)
+    @Html.TextAreaFor(m => m.Content, new { rows = 7, @class = "form-control" })
+</div>
+<div class="form-group">    
+    @Html.AntiForgeryToken()
+    <input id="submitCommentForm" type="submit" class="btn btn-primary" />
+    @Html.ValidationMessage("submit")
+</div>

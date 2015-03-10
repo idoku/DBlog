@@ -1,0 +1,62 @@
+﻿@model HomeIndexModel
+@{
+    ViewBag.Title = "Tags";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+        <h1 class="page-header">
+            Contents tagged with @Model.Tag
+            @*<small>doku love ice</small>*@
+        </h1>
+
+        @foreach (var item in Model.Posts)
+        {
+                 <!-- Blog Post -->
+            <h2>
+                <a href="@Url.Action("Post", new { id = @item.Slug })">@item.Title</a>
+            </h2>
+            <p class="lead">
+                by <a href="#">@item.Author</a>
+            </p>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on @item.Date.ToShortTimeString()</p>
+            @*<hr>
+                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                <hr>*@
+            <p>@item.Description</p>
+            <a class="btn btn-primary" href="@Url.Action("Post", new { id = @item.Slug })">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <hr>
+        }
+        <!-- Pager -->
+        @Html.Partial("_PagingControl", Model);
+        <!-- Pager -->
+    </div>
+    <!-- Blog Sidebar Widgets Column -->
+    <div class="col-md-4">
+        <!-- Blog Search Well -->
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <div class="well">
+                <h4>Blog Search</h4>
+                <div class="input-group">
+                    <input name="search" value="@Model.Search" type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+        }
+        <!-- Side Widget Well -->
+        <div class="well">
+            <h4>Tags</h4>
+            <div id="tags" style="width: 550px; height: 350px;"></div>
+        </div>
+    </div>
+</div>
+<!-- /.row -->  
+

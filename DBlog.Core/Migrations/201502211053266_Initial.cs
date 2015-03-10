@@ -74,6 +74,16 @@ namespace DBlog.Core.Migrations
                 .Index(t => t.ParentId);
             
             CreateTable(
+                "dbo.Tag",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        TagName = c.String(nullable: false),
+                        TagCount = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.BlogInfo",
                 c => new
                     {
@@ -168,6 +178,19 @@ namespace DBlog.Core.Migrations
                 .Index(t => t.PostRefId)
                 .Index(t => t.CategoryRefId);
             
+            CreateTable(
+                "dbo.PostTags",
+                c => new
+                    {
+                        PostRefId = c.Int(nullable: false),
+                        TagRefId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.PostRefId, t.TagRefId })
+                .ForeignKey("dbo.Post", t => t.PostRefId, cascadeDelete: true)
+                .ForeignKey("dbo.Tag", t => t.TagRefId, cascadeDelete: true)
+                .Index(t => t.PostRefId)
+                .Index(t => t.TagRefId);
+            
         }
         
         public override void Down()
@@ -179,11 +202,15 @@ namespace DBlog.Core.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Post", "CreatedBy_Id", "dbo.Author");
             DropForeignKey("dbo.Post", "UpdatedBy_Id", "dbo.Author");
+            DropForeignKey("dbo.PostTags", "TagRefId", "dbo.Tag");
+            DropForeignKey("dbo.PostTags", "PostRefId", "dbo.Post");
             DropForeignKey("dbo.Comment", "PostId", "dbo.Post");
             DropForeignKey("dbo.Comment", "ParentId", "dbo.Comment");
             DropForeignKey("dbo.PostCategories", "CategoryRefId", "dbo.Category");
             DropForeignKey("dbo.PostCategories", "PostRefId", "dbo.Post");
             DropForeignKey("dbo.Category", "ParentCategory_Id", "dbo.Category");
+            DropIndex("dbo.PostTags", new[] { "TagRefId" });
+            DropIndex("dbo.PostTags", new[] { "PostRefId" });
             DropIndex("dbo.PostCategories", new[] { "CategoryRefId" });
             DropIndex("dbo.PostCategories", new[] { "PostRefId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -198,6 +225,7 @@ namespace DBlog.Core.Migrations
             DropIndex("dbo.Category", new[] { "ParentCategory_Id" });
             DropIndex("dbo.Post", new[] { "CreatedBy_Id" });
             DropIndex("dbo.Post", new[] { "UpdatedBy_Id" });
+            DropTable("dbo.PostTags");
             DropTable("dbo.PostCategories");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
@@ -205,6 +233,7 @@ namespace DBlog.Core.Migrations
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.BlogInfo");
+            DropTable("dbo.Tag");
             DropTable("dbo.Comment");
             DropTable("dbo.Category");
             DropTable("dbo.Post");

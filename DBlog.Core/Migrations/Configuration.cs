@@ -28,34 +28,80 @@
             context.Authors.AddOrUpdate(x => x.Id,
               author);
 
-            //init category
-            var rootCategory = new Category() { 
-                 Id=1, Name = "Work", Descritption="my workd"
-            };
-            var childrenCategory = new Category() { 
-                 Id=2, Name=".Net", Descritption=".net tech", ParentCategory=rootCategory
-            };
-            context.Categories.AddOrUpdate(x => x.Id, rootCategory, childrenCategory);
-            
-            //init post
-            var post = new Post()
+            //init tags
+            for (int i = 0; i < 20; i++)
             {
-                Id = 1,
-                Author = author.PenName,
-                CreatedBy = author,
-                Categories = new List<Category>() { 
+                var tag = new Tag() { 
+                 TagName = "tag"+i.ToString(),
+                  TagCount = 0                
+                };
+                context.Tags.AddOrUpdate(x => x.Id, tag);
+            }
+
+            //init category
+            for (int i = 0; i < 10; i++)
+            {
+            
+                var rootCategory = new Category()
+                {
+                    Id = i,
+                    Name = "Work" + i,
+                    Descritption = "my workd"
+                };
+                var childrenCategory = new Category()
+                {
+                    Id = i * 10,
+                    Name = ".Net" + i,
+                    Descritption = ".net tech",
+                    ParentCategory = rootCategory
+                };
+                context.Categories.AddOrUpdate(x => x.Id, rootCategory, childrenCategory);
+            }
+          
+
+            for (int i = 0; i < 15; i++)
+            {
+                var rootCategory = context.Categories.Find(1);
+                var childrenCategory = context.Categories.Find(11);
+                //init post
+                var post = new Post()
+                {
+                    Id = i,
+                    Author = author.PenName,
+                    CreatedBy = author,
+                    Slug = "myfirstnetarticle" + i.ToString(),
+                    Categories = new List<Category>() { 
                  rootCategory,
                  childrenCategory,
                 },
-                CreateDate = DateTime.Now,
-                Title = "my first .net article",
-                Content = "first .net article,about .net",
-                Description = ".net article",
-                HasCommentsEnabled = false,
-                IsDelete = false,
-                IsTop = true,                
-            };
-            context.Posts.AddOrUpdate(x => x.Id, post);
+                    CreateDate = DateTime.Now,
+                    Title = "my first .net article" + i.ToString(),
+                    Content = "first .net article,about .net",
+                    Description = ".net article",
+                    HasCommentsEnabled = false,
+                    IsDelete = false,
+                    IsTop = true,
+                };
+                context.Posts.AddOrUpdate(x => x.Id, post);
+            }
+
+            var posted = context.Posts.Find(1);
+            //init comment
+            if (posted != null)
+            {
+                var comment = new Comment()
+                {
+                    CommentDate = DateTime.Now,
+                    Author = "doku",
+                    PostId = posted.Id,
+                    IsAudit = false,
+                    IsDeleted = false,
+                    Email = "doku@doku.com",
+                    Content = "abc",
+                };
+                context.Comments.AddOrUpdate(comment);
+            }
+
 
             //init account
             var userManager = new UserManager<ApplicationUser>(
