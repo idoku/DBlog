@@ -10,7 +10,7 @@ namespace DBlog.Core.Translate
     {
         public string Query { get; set; }
 
-        public string Form { get; set; }
+        public string From { get; set; }
 
         public string To { get; set; }
 
@@ -23,7 +23,7 @@ namespace DBlog.Core.Translate
         {
             TransDictionary parameters = new TransDictionary();
             parameters.Add("query", this.Query);
-            parameters.Add("from", this.Form);
+            parameters.Add("from", this.From);
             parameters.Add("to", this.To);
             return parameters;
         }

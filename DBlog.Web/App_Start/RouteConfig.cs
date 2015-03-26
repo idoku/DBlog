@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace IdentitySample
+namespace DBlog.Web
 {
     public class RouteConfig
     {

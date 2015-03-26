@@ -109,9 +109,9 @@
             var roleManager = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(new BlogContext()));
 
-            string name = "doku";
+            string name = "dragon.ice@foxmail.com";
             string email = "dragon.ice@foxmail.com";
-            string password = "123@com";
+            string password = "Kulong@995";
             string roleName = "Admin";
             //init user
             var user = userManager.FindByName(name);
@@ -121,9 +121,10 @@
                 {
                     UserName = name,
                     Email = email,
-                    Author = author
+                    Author = author,
+                    EmailConfirmed = true,
                 };
-                userManager.Create(user, password);
+                userManager.CreateAsync(user, password);                
             }
             //init role
             var role = roleManager.FindByName(roleName);

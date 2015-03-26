@@ -9,7 +9,7 @@ namespace DBlog.Core.Translate
     public interface ITransRequest<T> where T : TransResponse
     {
         /// <summary>
-        /// 获取PUSH的API名称。
+        /// 获取TRANS的API名称。
         /// </summary>
         /// <returns>API名称</returns>
         string GetApiName();

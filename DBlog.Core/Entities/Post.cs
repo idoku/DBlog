@@ -13,6 +13,7 @@ namespace DBlog.Core.Entities
         [Key]
         public int Id { get; set; }
 
+        [Required]
         [MaxLength(200)]
         public string Title { get; set; }
 
@@ -35,6 +36,7 @@ namespace DBlog.Core.Entities
         [Required]
         public bool HasCommentsEnabled { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public string Slug { get; set; }
 

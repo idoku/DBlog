@@ -1,6 +1,6 @@
 ﻿using Owin;
 
-namespace IdentitySample
+namespace DBlog.Web
 {
     public partial class Startup
     {

@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace IdentitySample
+namespace DBlog.Web
 {
     public class BundleConfig
     {

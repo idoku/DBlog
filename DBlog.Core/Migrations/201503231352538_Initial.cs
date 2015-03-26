@@ -21,13 +21,13 @@ namespace DBlog.Core.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(maxLength: 200),
+                        Title = c.String(nullable: false, maxLength: 200),
                         Description = c.String(maxLength: 500),
                         Author = c.String(maxLength: 20),
                         CreateDate = c.DateTime(nullable: false),
                         Content = c.String(),
                         HasCommentsEnabled = c.Boolean(nullable: false),
-                        Slug = c.String(maxLength: 50),
+                        Slug = c.String(nullable: false, maxLength: 50),
                         IsTop = c.Boolean(nullable: false),
                         IsDelete = c.Boolean(nullable: false),
                         Views = c.Int(nullable: false),
@@ -65,7 +65,7 @@ namespace DBlog.Core.Migrations
                         IsAudit = c.Boolean(nullable: false),
                         IsDeleted = c.Boolean(nullable: false),
                         PostId = c.Int(nullable: false),
-                        ParentId = c.Int(nullable: false),
+                        ParentId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Comment", t => t.ParentId)

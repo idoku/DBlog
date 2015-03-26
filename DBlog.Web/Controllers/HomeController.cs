@@ -19,10 +19,7 @@ namespace DBlog.Web.Controllers
         private const int PageSize = 8;
 
         public ActionResult Index(string tag, string search, int? page)
-        {
-
-            TransHelper.Translate("中国");
-
+        {            
             int pageIndex = page ?? 1;
             var posts = this.GetPosts(tag, "", search, new Paging(pageIndex, PageSize));
             var categories = this.GetCategories();
